@@ -1,20 +1,92 @@
 <?php
-/* @var $this SiteController */
+$location = $datos->{'location'}->{'city'};
+$temp_c = $datos->{'current_observation'}->{'temp_c'};
+$icono = $datos->{'current_observation'}->{'icon_url'};
+$clima = $datos->{'current_observation'}->{'weather'};
+$sensaciontermica_c = $datos->{'current_observation'}->{'feelslike_c'};
+$viento_kmh = $datos->{'current_observation'}->{'wind_kph'};
+$viento_direccion = $datos->{'current_observation'}->{'wind_dir'};
+$presion_mb = $datos->{'current_observation'}->{'pressure_mb'};
 
-$this->pageTitle=Yii::app()->name;
+$data = urlencode("El clima en Neuquen es " . $clima . " y la temperatura es de " . $temp_c . " grados");
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<table cellpadding="0" cellspacing="1" id="Tabla1"  style="left:0px;top:0px;width:440px;text-align: center" >
+    <tr>
+        <th>Ahora</th>
+        <th>Temperatura</th>
+        <th>Viento</th>
+        <th>Presión</th>
+    </tr>
+    <tr>
+        <td>
+            <img src="<?php echo "${icono}" ?>" width="44" height="44" alt="<?php echo "$clima" ?>"  />
+            <br />
+            <span><?php echo "${clima}" ?></span>
+        </td>
+        <td> 
+            <div>  
+                <big>
+                    <span>                 
+                        <span>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+                            <?php echo "${temp_c}" ?>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+                        </span>
+                        &nbsp;&#176; C
+                    </span>
+                </big>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+                <div>
+                    <small>
+                        <br />
+                        <span>Sensación térmica
+                            <br />
+                            <span>
+                                <?php echo "${sensaciontermica_c}" ?>
+                            </span>
+                            &nbsp;&#176; C
+                        </span>
+                    </small>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div>
+                <span>
+                    <span>
+                        <?php echo "${viento_kmh}" ?>
+
+                    </span> 
+                    km/h
+                </span>
+                <br />
+                Dirección:
+                <?php echo "${viento_direccion}" ?>
+            </div>
+        </td>
+        <td>
+            <?php echo "${presion_mb}" ?> 
+            <span> mbares</span> 
+        </td>
+    </tr>
+</table>
+<audio controls="controls">
+    <source src="https://translate.google.com/translate_tts?tl=es&q=<?php echo $data; ?>" type="audio/mpeg" />
+    Su navegador no soporta elementos de audio
+</audio>
+
+<a href="<?php echo $urlcorta; ?>"><?php echo $urlcorta; ?></a>
+<br /><br />
+<!--mapa-->
+
+<!--videos-->
+
+<!--lista de twits-->
+<div>
+    <?php
+    foreach ($tweets as $valor) {
+        echo '<p>' . $valor->user->name . " " . $valor->created_at . " " . $valor->text . '</p>';
+    }
+    ?>
+</div>
