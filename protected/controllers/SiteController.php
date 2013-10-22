@@ -20,8 +20,8 @@ class SiteController extends Controller {
         );
     }
 
-    public function clima() {
-        $json_string = file_get_contents("http://api.wunderground.com/api/facfde1f912d0a40/forecast/geolookup/conditions/lang:SP/q/Argentina/Neuquen.json");
+    public function clima($ciudad) {
+        $json_string = file_get_contents("http://api.wunderground.com/api/facfde1f912d0a40/forecast/geolookup/conditions/lang:SP/q/Argentina/$ciudad.json");
         $datosClima = json_decode($json_string);
         return $datosClima;
     }
@@ -135,14 +135,14 @@ class SiteController extends Controller {
     public function actionIndex() {
 // renders the view file 'protected/views/site/index.php'
 // using the default layout 'protected/views/layouts/main.php'
-        $datos = $this->clima();
-        $urlcorta = 'pepe';//$this->comprimirUrl('pedco.uncoma.edu.ar');
+        $datos = $this->clima('Neuquen');
+        $urlcorta = 0;//$this->comprimirUrl('pedco.uncoma.edu.ar');
         /* escribir en twitter */
         /* escribir en drive */
         /* traer datos de twitter */
-        $tweets=$this->buscarTweets('mattleblancmm', 20);
+        $tweets=$this->buscarTweets('pabloseix', 20);
         /* traer datos de youtube */
-
+        //print_r($tweets);exit();
 
         $this->render('index', array('datos' => $datos, 'urlcorta' => $urlcorta,'tweets'=>$tweets));
     }
