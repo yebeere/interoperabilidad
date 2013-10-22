@@ -5,6 +5,8 @@ class SiteController extends Controller {
     /**
      * Declares class-based actions.
      */
+    private $mp3data;
+    
     public function actions() {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
@@ -26,6 +28,28 @@ class SiteController extends Controller {
         return $datosClima;
     }
 
+    function setText($text) {
+        $text = trim($text);//saco espacios al principio y final del texto
+        $text = substr($text, 0, 100);
+        if(!empty($text)) {
+            $text = urlencode($text);//Codifica como URL una cadena
+            //leo el archivo completo y lo asigno al string mp3data
+            $this->mp3data = 	file_get_contents("http://translate.google.com/translate_tts?tl=es&q={$text}");
+            return $this->mp3data;
+        } else { return false; }
+    }
+ 
+    function saveToFile($filename) {
+        $filename = trim($filename);
+        if(!empty($filename)) {
+            //asigno el contenido del string a un archivo
+            return file_put_contents(Yii::App()->basePath.'/../mp3/'.$filename,$this->mp3data);
+        } else { return false; }
+  }
+ 
+    
+    
+    
     /**
      * Reducir URL
      */
@@ -37,8 +61,8 @@ class SiteController extends Controller {
         $client = new Google_Client();
         $client->setClientId('1036172153344-0fkriteltr75kiu1t1d4q6garmeoskpu.apps.googleusercontent.com');
         $client->setClientSecret('E2tXm0HnwJtuSfxg7hufGsl8');
-        $client->setRedirectUri('http://localhost/yii/interop');
-        $client->setDeveloperKey('AIzaSyBbRTTIq0Bkx- jAyJcK9mULXZdE1VLsuKg');
+        $client->setRedirectUri('http://localhost/yii/interop/index.php');
+        $client->setDeveloperKey('AIzaSyBbRTTIq0Bkx-jAyJcK9mULXZdE1VLsuKg');
         $service = new Google_UrlshortenerService($client);
 //exit('2');
         if (isset($_REQUEST['logout'])) {
@@ -136,7 +160,12 @@ class SiteController extends Controller {
 // renders the view file 'protected/views/site/index.php'
 // using the default layout 'protected/views/layouts/main.php'
         $datos = $this->clima('Neuquen');
-        $urlcorta = 0;//$this->comprimirUrl('pedco.uncoma.edu.ar');
+        $urlcorta = $this->comprimirUrl('pedco.uncoma.edu.ar');
+        $clima = $datos->current_observation->weather;
+        $texto="El clima en Neuquen es " . $clima;
+        $this->setText($texto);
+        $archivo='tiempo.mp3';
+        $this->saveToFile($archivo);    
         /* escribir en twitter */
         /* escribir en drive */
         /* traer datos de twitter */
@@ -144,7 +173,7 @@ class SiteController extends Controller {
         /* traer datos de youtube */
         //print_r($tweets);exit();
 
-        $this->render('index', array('datos' => $datos, 'urlcorta' => $urlcorta,'tweets'=>$tweets));
+        $this->render('index', array('archivo'=>$archivo,'datos' => $datos, 'urlcorta' => $urlcorta,'tweets'=>$tweets));
     }
 
     /**

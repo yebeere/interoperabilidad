@@ -72,7 +72,7 @@ $data = urlencode("El clima en Neuquen es " . $clima . " y la temperatura es de 
     </tr>
 </table>
 <audio controls="controls">
-    <source src="https://translate.google.com/translate_tts?tl=es&q=<?php echo $data; ?>" type="audio/mpeg" />
+    <source src="<?php echo Yii::App()->baseUrl.'/mp3/'.$archivo;?>" type="audio/mpeg" />
     Su navegador no soporta elementos de audio
 </audio>
 
