@@ -1,4 +1,5 @@
 <?php
+//print_r($datos);exit();
 $location = $datos->{'location'}->{'city'};
 $temp_c = $datos->{'current_observation'}->{'temp_c'};
 $icono = $datos->{'current_observation'}->{'icon_url'};
@@ -90,3 +91,44 @@ $data = urlencode("El clima en Neuquen es " . $clima . " y la temperatura es de 
     }
     ?>
 </div>
+
+<?php
+ 
+    $count = 1;
+
+$resulta = "<pre>\n";
+if (isset($videoFeed)) {
+    foreach ($videoFeed as $videoEntry) {
+        $resulta = '<h3>Entrada # ' . $count . "</h3><br/>";
+        $resulta .= "\tVideos: " . $videoEntry->getVideoTitle() . "<br/>";
+        $resulta .= "\tDescripcion: " . $videoEntry->getVideoDescription() . "<br/>";
+        $resulta .= "\tURL en Youtube: " . $videoEntry->getVideoWatchPageUrl() . "<br/>";
+        $resulta .= "\tDuracion: " . $videoEntry->getVideoDuration() . "\n";
+        $resulta .= "\tContador de Vistas: " . $videoEntry->getVideoViewCount() . "<br/>";
+        echo "\t<a href=" . $videoEntry->getVideoWatchPageUrl() . "\">";
+        $bsinImagen = FALSE;
+        $videoThumbnails = $videoEntry->getVideoThumbnails();
+
+        if (!isset($videoThumbnails[0])) {
+            $bsinImagen = true;
+        } else {
+            $videoThumbnail = $videoThumbnails[0];
+        }
+        $alto = '240';
+        $ancho = '360';
+
+        if (!$bsinImagen) {
+
+            echo "\t\t<img src=\"" . $videoThumbnail["url"] . "\"";
+            echo " align='center'";
+            echo " height=\"" . $alto . "\"";
+            echo " width=\"" . $ancho . "\" />";
+            echo "</a><br/>";
+        }
+        $count++;
+
+        echo $resulta;
+    }
+    $resulta = "</pre>";
+    echo $resulta;
+}

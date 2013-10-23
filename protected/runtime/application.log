@@ -196,3 +196,206 @@ REQUEST_URI=/yii/interop/index.php?code=4/GMGW9N6VFgquy2UDR0MJKvRod5W3.cke9_RdC1
 in /home/pablo/yii/interop/protected/views/site/index.php (88)
 in /home/pablo/yii/interop/protected/controllers/SiteController.php (175)
 in /home/pablo/yii/interop/index.php (13)
+2013/10/22 23:22:59 [error] [exception.Google_AuthException] exception 'Google_AuthException' with message 'Error fetching OAuth2 access token, message: 'invalid_grant'' in /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/auth/Google_OAuth2.php:115
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/Google_Client.php(127): Google_OAuth2->authenticate(Array, NULL)
+#1 /home/pablo/yii/interop/protected/controllers/SiteController.php(73): Google_Client->authenticate()
+#2 /home/pablo/yii/interop/protected/controllers/SiteController.php(163): SiteController->comprimirUrl('pedco.uncoma.ed...')
+#3 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/interop/index.php?code=4/GMGW9N6VFgquy2UDR0MJKvRod5W3.cke9_RdC1RUUaDn_6y0ZQNjCMOPEgwI
+---
+2013/10/22 23:34:13 [error] [php] A session had already been started - ignoring session_start() (/home/pablo/yii/interop/protected/extensions/Youtube/Session.php:2)
+Stack trace:
+#0 /home/pablo/yii/interop/protected/controllers/SiteController.php(206): SiteController->darVideos()
+#1 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /home/pablo/yii/interop/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/interop/index.php
+in /home/pablo/yii/interop/protected/extensions/Youtube/Session.php (2)
+in /home/pablo/yii/interop/protected/controllers/SiteController.php (157)
+in /home/pablo/yii/interop/protected/controllers/SiteController.php (206)
+2013/10/22 23:44:30 [error] [exception.Google_AuthException] exception 'Google_AuthException' with message 'Error fetching OAuth2 access token, message: 'invalid_grant'' in /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/auth/Google_OAuth2.php:115
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/Google_Client.php(127): Google_OAuth2->authenticate(Array, NULL)
+#1 /home/pablo/yii/interop/protected/controllers/SiteController.php(73): Google_Client->authenticate()
+#2 /home/pablo/yii/interop/protected/controllers/SiteController.php(193): SiteController->comprimirUrl('http://wublast....')
+#3 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/interop/index.php?code=4/UCdfsAsWAYR1NE09aMs2G_rX6bAz.8lf4Q99RveUUaDn_6y0ZQNjKwBvFgwI
+---
+2013/10/22 23:45:12 [error] [exception.Zend_Gdata_App_HttpException] exception 'Zend_Gdata_App_HttpException' with message 'Expected response code 200, got 401
+<HTML>
+<HEAD>
+<TITLE>Token invalid</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+<H1>Token invalid</H1>
+<H2>Error 401</H2>
+</BODY>
+</HTML>
+' in /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php:709
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(219): Zend_Gdata_App->performHttpRequest('GET', 'http://gdata.yo...', Array, NULL, NULL, NULL)
+#1 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(875): Zend_Gdata->performHttpRequest('GET', 'http://gdata.yo...', Array)
+#2 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(763): Zend_Gdata_App->get('http://gdata.yo...', NULL)
+#3 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(205): Zend_Gdata_App->importUrl('http://gdata.yo...', 'Zend_Gdata_YouT...', NULL)
+#4 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(162): Zend_Gdata_App->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#5 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/YouTube.php(599): Zend_Gdata->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#6 /home/pablo/yii/interop/protected/controllers/SiteController.php(174): Zend_Gdata_YouTube->getUserUploads('InfoClimaTV')
+#7 /home/pablo/yii/interop/protected/controllers/SiteController.php(206): SiteController->darVideos()
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#13 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#14 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/interop/index.php?code=4/YVmM1LGexRc8e-yvzp_NPXcl9usv.or8zALibkDcVaDn_6y0ZQNhiviDFgwI
+---
+2013/10/22 23:46:18 [error] [exception.Google_AuthException] exception 'Google_AuthException' with message 'Error fetching OAuth2 access token, message: 'invalid_grant'' in /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/auth/Google_OAuth2.php:115
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/Google_Client.php(127): Google_OAuth2->authenticate(Array, NULL)
+#1 /home/pablo/yii/interop/protected/controllers/SiteController.php(73): Google_Client->authenticate()
+#2 /home/pablo/yii/interop/protected/controllers/SiteController.php(193): SiteController->comprimirUrl('http://wublast....')
+#3 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/interop/index.php?code=4/YVmM1LGexRc8e-yvzp_NPXcl9usv.or8zALibkDcVaDn_6y0ZQNhiviDFgwI
+---
+2013/10/22 23:46:34 [error] [exception.Zend_Gdata_App_HttpException] exception 'Zend_Gdata_App_HttpException' with message 'Expected response code 200, got 401
+<HTML>
+<HEAD>
+<TITLE>Token invalid</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+<H1>Token invalid</H1>
+<H2>Error 401</H2>
+</BODY>
+</HTML>
+' in /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php:709
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(219): Zend_Gdata_App->performHttpRequest('GET', 'http://gdata.yo...', Array, NULL, NULL, NULL)
+#1 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(875): Zend_Gdata->performHttpRequest('GET', 'http://gdata.yo...', Array)
+#2 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(763): Zend_Gdata_App->get('http://gdata.yo...', NULL)
+#3 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(205): Zend_Gdata_App->importUrl('http://gdata.yo...', 'Zend_Gdata_YouT...', NULL)
+#4 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(162): Zend_Gdata_App->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#5 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/YouTube.php(599): Zend_Gdata->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#6 /home/pablo/yii/interop/protected/controllers/SiteController.php(174): Zend_Gdata_YouTube->getUserUploads('InfoClimaTV')
+#7 /home/pablo/yii/interop/protected/controllers/SiteController.php(206): SiteController->darVideos()
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#13 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#14 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/interop/index.php
+---
+2013/10/22 23:56:39 [error] [exception.Zend_Gdata_App_HttpException] exception 'Zend_Gdata_App_HttpException' with message 'Expected response code 200, got 401
+<HTML>
+<HEAD>
+<TITLE>Token invalid</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+<H1>Token invalid</H1>
+<H2>Error 401</H2>
+</BODY>
+</HTML>
+' in /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php:709
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(219): Zend_Gdata_App->performHttpRequest('GET', 'http://gdata.yo...', Array, NULL, NULL, NULL)
+#1 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(875): Zend_Gdata->performHttpRequest('GET', 'http://gdata.yo...', Array)
+#2 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(763): Zend_Gdata_App->get('http://gdata.yo...', NULL)
+#3 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(205): Zend_Gdata_App->importUrl('http://gdata.yo...', 'Zend_Gdata_YouT...', NULL)
+#4 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(162): Zend_Gdata_App->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#5 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/YouTube.php(599): Zend_Gdata->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#6 /home/pablo/yii/interop/protected/controllers/SiteController.php(174): Zend_Gdata_YouTube->getUserUploads('InfoClimaTV')
+#7 /home/pablo/yii/interop/protected/controllers/SiteController.php(206): SiteController->darVideos()
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#13 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#14 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/interop/index.php
+---
+2013/10/22 23:58:20 [error] [exception.Zend_Gdata_App_HttpException] exception 'Zend_Gdata_App_HttpException' with message 'Expected response code 200, got 401
+<HTML>
+<HEAD>
+<TITLE>Token invalid</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+<H1>Token invalid</H1>
+<H2>Error 401</H2>
+</BODY>
+</HTML>
+' in /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php:709
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(219): Zend_Gdata_App->performHttpRequest('GET', 'http://gdata.yo...', Array, NULL, NULL, NULL)
+#1 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(875): Zend_Gdata->performHttpRequest('GET', 'http://gdata.yo...', Array)
+#2 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(763): Zend_Gdata_App->get('http://gdata.yo...', NULL)
+#3 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/App.php(205): Zend_Gdata_App->importUrl('http://gdata.yo...', 'Zend_Gdata_YouT...', NULL)
+#4 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata.php(162): Zend_Gdata_App->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#5 /home/pablo/yii/interop/protected/extensions/Youtube/Zend/Gdata/YouTube.php(599): Zend_Gdata->getFeed('http://gdata.yo...', 'Zend_Gdata_YouT...')
+#6 /home/pablo/yii/interop/protected/controllers/SiteController.php(174): Zend_Gdata_YouTube->getUserUploads('InfoClimaTV')
+#7 /home/pablo/yii/interop/protected/controllers/SiteController.php(206): SiteController->darVideos()
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#13 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#14 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/interop/index.php?code=4/JQwVk0712dvw3pYL76YxcyP5nOj7.4jthbTi6zgwYaDn_6y0ZQNj27jjFgwI
+---
+2013/10/22 23:58:38 [error] [exception.Google_AuthException] exception 'Google_AuthException' with message 'Error fetching OAuth2 access token, message: 'invalid_grant'' in /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/auth/Google_OAuth2.php:115
+Stack trace:
+#0 /home/pablo/yii/interop/protected/extensions/google-api-php-client/src/Google_Client.php(127): Google_OAuth2->authenticate(Array, NULL)
+#1 /home/pablo/yii/interop/protected/controllers/SiteController.php(73): Google_Client->authenticate()
+#2 /home/pablo/yii/interop/protected/controllers/SiteController.php(193): SiteController->comprimirUrl('http://wublast....')
+#3 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(282): CController->run('')
+#8 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /home/pablo/yii/yii-1.1.13.e9e4a0/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/pablo/yii/interop/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/interop/index.php?code=4/JQwVk0712dvw3pYL76YxcyP5nOj7.4jthbTi6zgwYaDn_6y0ZQNj27jjFgwI
+---

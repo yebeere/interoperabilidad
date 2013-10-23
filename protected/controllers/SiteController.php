@@ -23,7 +23,7 @@ class SiteController extends Controller {
     }
 
     public function clima($ciudad) {
-        $json_string = file_get_contents("http://api.wunderground.com/api/facfde1f912d0a40/forecast/geolookup/conditions/lang:SP/q/Argentina/$ciudad.json");
+        $json_string = file_get_contents("http://api.wunderground.com/api/facfde1f912d0a40/forecast/geolookup/satellite/conditions/lang:SP/q/Argentina/$ciudad.json");
         $datosClima = json_decode($json_string);
         return $datosClima;
     }
@@ -152,6 +152,35 @@ class SiteController extends Controller {
         }
     }
 
+    public function darVideos($idVideo = '', $user = 'InfoClimaTV') {
+        Yii::import('ext.Youtube.*');
+        require_once 'Session.php';
+        require_once 'AuthYoutube.php';
+        require_once 'misVideosYoutube.php';
+        require_once 'Zend/Gdata/ClientLogin.php';
+        $_user = '1036172153344-0fkriteltr75kiu1t1d4q6garmeoskpu.apps.googleusercontent.com';
+
+        $ay = new AuthYoutube($_user);
+        if (isset($_GET["login"]) && $_GET["login"] == 0) {
+            Session::destruirToken();
+        } else if (isset($_GET['token'])) {
+            Session::registrarToken($ay->getSessionToken($_GET['token']));
+        } else if (Session::verificarToken()) {
+            echo Session::mostrarLogOut();
+            $yt = new YoutubeClient($ay->getYoutubeHttpClient());
+            if ($idVideo == '') {
+                $user = 'InfoClimaTV';
+ 
+                return $yt->_yt->getuserUploads($user);
+            } else {
+                return $this->reproducirVideo($yt, $idVideo);
+            }
+        } else {
+            echo Session::mostrarLogin($ay->getAuthURL());
+
+        }
+    }
+    
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
@@ -160,7 +189,8 @@ class SiteController extends Controller {
 // renders the view file 'protected/views/site/index.php'
 // using the default layout 'protected/views/layouts/main.php'
         $datos = $this->clima('Neuquen');
-        $urlcorta = $this->comprimirUrl('pedco.uncoma.edu.ar');
+        $urllarga=$datos->satellite->image_url_vis;
+        $urlcorta = $this->comprimirUrl($urllarga);
         $clima = $datos->current_observation->weather;
         $texto="El clima en Neuquen es " . $clima;
         $this->setText($texto);
@@ -169,11 +199,13 @@ class SiteController extends Controller {
         /* escribir en twitter */
         /* escribir en drive */
         /* traer datos de twitter */
-        $tweets=$this->buscarTweets('pabloseix', 20);
+        $this->twitter($texto.' '.$urlcorta);
+        $tweets=$this->buscarTweets('mattleblancmm', 20);
         /* traer datos de youtube */
         //print_r($tweets);exit();
-
-        $this->render('index', array('archivo'=>$archivo,'datos' => $datos, 'urlcorta' => $urlcorta,'tweets'=>$tweets));
+         $videos = $this->darVideos();
+       
+        $this->render('index', array("videoFeed" => $videos,'archivo'=>$archivo,'datos' => $datos, 'urlcorta' => $urlcorta,'tweets'=>$tweets));
     }
 
     /**
