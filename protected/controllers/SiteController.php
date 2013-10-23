@@ -249,23 +249,26 @@ class SiteController extends Controller {
     public function actionIndex() {
 // renders the view file 'protected/views/site/index.php'
 // using the default layout 'protected/views/layouts/main.php'
+        //busca el clima de neuquen
         $datos = $this->clima('Neuquen');
         $urllarga = $datos->satellite->image_url_vis;
+        //transforma la url del mapa en una url corta
         $urlcorta = $this->comprimirUrl($urllarga);
         $clima = $datos->current_observation->weather;
         $texto = "El clima en Neuquen es " . $clima;
+        //se descarga un mp3 con el texto de la temperatura
         $this->setText($texto);
         $archivo = 'tiempo.mp3';
+        //guarda en el sistema de archivos el mp3
         $this->saveToFile($archivo);
+        //escribe el mp3 en google drive
         $this->subirMp3($archivo);
-
-        /* escribir en twitter */
-        /* escribir en drive */
-        /* traer datos de twitter */
+        //escribe en twitter la temperatura y la url del mapa en twitter
         $this->twitter($texto . ' ' . $urlcorta);
+        //busca todos los tweets del usario
         $tweets = $this->buscarTweets('mattleblancmm', 20);
         /* traer datos de youtube */
-        //print_r($tweets);exit();
+        //busca todos los videos del usuario infoclima
         $videos = $this->darVideos();
 
         $this->render('index', array("videoFeed" => $videos, 'archivo' => $archivo, 'datos' => $datos, 'urlcorta' => $urlcorta, 'tweets' => $tweets));
