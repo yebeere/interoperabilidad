@@ -1,12 +1,12 @@
 <?php
-
+session_start();
 class SiteController extends Controller {
 
     /**
      * Declares class-based actions.
      */
     private $mp3data;
-    
+
     public function actions() {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
@@ -29,69 +29,26 @@ class SiteController extends Controller {
     }
 
     function setText($text) {
-        $text = trim($text);//saco espacios al principio y final del texto
+        $text = trim($text); //saco espacios al principio y final del texto
         $text = substr($text, 0, 100);
-        if(!empty($text)) {
-            $text = urlencode($text);//Codifica como URL una cadena
+        if (!empty($text)) {
+            $text = urlencode($text); //Codifica como URL una cadena
             //leo el archivo completo y lo asigno al string mp3data
-            $this->mp3data = 	file_get_contents("http://translate.google.com/translate_tts?tl=es&q={$text}");
+            $this->mp3data = file_get_contents("http://translate.google.com/translate_tts?tl=es&q={$text}");
             return $this->mp3data;
-        } else { return false; }
+        } else {
+            return false;
+        }
     }
- 
+
     function saveToFile($filename) {
         $filename = trim($filename);
-        if(!empty($filename)) {
+        if (!empty($filename)) {
             //asigno el contenido del string a un archivo
-            return file_put_contents(Yii::App()->basePath.'/../mp3/'.$filename,$this->mp3data);
-        } else { return false; }
-  }
- 
-    
-    
-    
-    /**
-     * Reducir URL
-     */
-    public function comprimirUrl($link) {
-        session_start();
-
-        yii::import('ext.google-api-php-client.src.*');
-
-        $client = new Google_Client();
-        $client->setClientId('1036172153344-0fkriteltr75kiu1t1d4q6garmeoskpu.apps.googleusercontent.com');
-        $client->setClientSecret('E2tXm0HnwJtuSfxg7hufGsl8');
-        $client->setRedirectUri('http://localhost/yii/interop/index.php');
-        $client->setDeveloperKey('AIzaSyBbRTTIq0Bkx-jAyJcK9mULXZdE1VLsuKg');
-        $service = new Google_UrlshortenerService($client);
-//exit('2');
-        if (isset($_REQUEST['logout'])) {
-            unset($_SESSION['access_token']);
-        }
-
-        if (isset($_GET['code'])) {
-            $client->authenticate();
-            $_SESSION['access_token'] = $client->getAccessToken();
-            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
-        }
-//exit('1');
-        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-            $client->setAccessToken($_SESSION['access_token']);
+            return file_put_contents(Yii::App()->basePath . '/../mp3/' . $filename, $this->mp3data);
         } else {
-            $authUrl = $client->createAuthUrl();
-            exit("<a class='login' href='$authUrl'>Connect Me!</a>");
+            return false;
         }
-
-        if ($client->getAccessToken() && isset($link)) {
-// Start to make API requests.
-            $url = new Google_Url();
-            $url->longUrl = $link;
-            $short = $service->url->insert($url);
-            $_SESSION['access_token'] = $client->getAccessToken();
-        }
-
-        return $short['id'];
     }
 
     /**
@@ -170,42 +127,148 @@ class SiteController extends Controller {
             $yt = new YoutubeClient($ay->getYoutubeHttpClient());
             if ($idVideo == '') {
                 $user = 'InfoClimaTV';
- 
+
                 return $yt->_yt->getuserUploads($user);
             } else {
                 return $this->reproducirVideo($yt, $idVideo);
             }
         } else {
             echo Session::mostrarLogin($ay->getAuthURL());
-
         }
     }
-    
+
+    /**
+     * Reducir URL
+     */
+    public function comprimirUrl($link) {
+       // session_start();
+
+        yii::import('ext.google-api-php-client.src.*');
+
+        $client = new Google_Client();
+        $client->setClientId('1036172153344-0fkriteltr75kiu1t1d4q6garmeoskpu.apps.googleusercontent.com');
+        $client->setClientSecret('E2tXm0HnwJtuSfxg7hufGsl8');
+        $client->setRedirectUri('http://localhost/yii/interop/index.php');
+        $client->setDeveloperKey('AIzaSyBbRTTIq0Bkx-jAyJcK9mULXZdE1VLsuKg');
+        $client->setScopes(array('https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/urlshortener','https://www.googleapis.com/auth/youtube'));
+        $service = new Google_UrlshortenerService($client);
+//exit('2');
+        if (isset($_REQUEST['logout'])) {
+            unset($_SESSION['access_token']);
+        }
+
+        if (isset($_GET['code'])) {
+            $client->authenticate();
+            $_SESSION['access_token'] = $client->getAccessToken();
+            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            exit();
+        }
+//exit('1');
+        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+            $client->setAccessToken($_SESSION['access_token']);
+        } else {
+            $authUrl = $client->createAuthUrl();
+            exit("<a class='login' href='$authUrl'>Connect Me!</a>");
+        }
+
+        if ($client->getAccessToken() && isset($link)) {
+// Start to make API requests.
+            $url = new Google_Url();
+            $url->longUrl = $link;
+            $short = $service->url->insert($url);
+            $_SESSION['access_token'] = $client->getAccessToken();
+        }
+
+        return $short['id'];
+    }
+
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
+    public function subirMp3($file_name) {
+        
+        yii::import('ext.google-api-php-client.src.*');
+
+
+
+        $client = new Google_Client();
+
+        $client->setClientId('1036172153344-0fkriteltr75kiu1t1d4q6garmeoskpu.apps.googleusercontent.com');
+        $client->setClientSecret('E2tXm0HnwJtuSfxg7hufGsl8');
+        $client->setRedirectUri('http://localhost/yii/interop/index.php');
+        $client->setDeveloperKey('AIzaSyBbRTTIq0Bkx-jAyJcK9mULXZdE1VLsuKg');
+
+        $client->setScopes(array('https://www.googleapis.com/auth/drive'));
+        $service = new Google_DriveService($client);
+
+//exit('2');
+        if (isset($_GET['logout'])) {
+            unset($_SESSION['access_token']);
+        }
+
+        if (isset($_GET['code'])) {
+            $client->authenticate();
+            $_SESSION['access_token'] = $client->getAccessToken();
+            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            exit();
+        }
+//exit('1');
+        if (isset($_SESSION['access_token'])) {
+            $client->setAccessToken($_SESSION['access_token']);
+        } else {
+            $authUrl = $client->createAuthUrl();
+            exit("<a class='login' href='$authUrl'>Connect Me!</a>");
+        }
+
+
+
+
+
+
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $file = new Google_DriveFile();
+
+        $file_path = Yii::App()->basePath . '/../mp3/' . $file_name;
+        $mime_type = finfo_file($finfo, $file_path);
+        $file->setTitle($file_name);
+        $file->setDescription('This is a ' . $mime_type . ' document');
+        $file->setMimeType($mime_type);
+        $service->files->insert(
+                $file, array(
+            'data' => file_get_contents($file_path),
+            'mimeType' => $mime_type
+                )
+        );
+        finfo_close($finfo);
+    }
+
     public function actionIndex() {
 // renders the view file 'protected/views/site/index.php'
 // using the default layout 'protected/views/layouts/main.php'
         $datos = $this->clima('Neuquen');
-        $urllarga=$datos->satellite->image_url_vis;
+        $urllarga = $datos->satellite->image_url_vis;
         $urlcorta = $this->comprimirUrl($urllarga);
         $clima = $datos->current_observation->weather;
-        $texto="El clima en Neuquen es " . $clima;
+        $texto = "El clima en Neuquen es " . $clima;
         $this->setText($texto);
-        $archivo='tiempo.mp3';
-        $this->saveToFile($archivo);    
+        $archivo = 'tiempo.mp3';
+        $this->saveToFile($archivo);
+        $this->subirMp3($archivo);
+
         /* escribir en twitter */
         /* escribir en drive */
         /* traer datos de twitter */
-        $this->twitter($texto.' '.$urlcorta);
-        $tweets=$this->buscarTweets('mattleblancmm', 20);
+        $this->twitter($texto . ' ' . $urlcorta);
+        $tweets = $this->buscarTweets('mattleblancmm', 20);
         /* traer datos de youtube */
         //print_r($tweets);exit();
-         $videos = $this->darVideos();
-       
-        $this->render('index', array("videoFeed" => $videos,'archivo'=>$archivo,'datos' => $datos, 'urlcorta' => $urlcorta,'tweets'=>$tweets));
+        $videos = $this->darVideos();
+
+        $this->render('index', array("videoFeed" => $videos, 'archivo' => $archivo, 'datos' => $datos, 'urlcorta' => $urlcorta, 'tweets' => $tweets));
     }
 
     /**
